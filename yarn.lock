@@ -501,10 +501,10 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@boost/module@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@boost/module/-/module-3.0.0.tgz#54d3a0c86f135bee5b64f28da966526cdc0d9033"
-  integrity sha512-BiYpiLz2QSsQPT52y+iHz87slFBtZgaHEBNidfsdmmUqSYnemgFWA58pTKvI7B6D+NLW9W5WIIstKmkVkcyQSg==
+"@boost/module@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@boost/module/-/module-3.0.1.tgz#514c0ddc94acea4c0017b828d75ed9345c437a45"
+  integrity sha512-vQO/Hupy/vAsD4FErAhzdC6GBklAqazknqq0qggrgUj7aqTTACK9u89A9uCiqdindfI6exbquypREfL4oiPsjQ==
 
 "@cspotcode/source-map-consumer@0.8.0":
   version "0.8.0"
@@ -1143,10 +1143,10 @@
   dependencies:
     "@types/ms" "*"
 
-"@types/faker@^5.5.8":
-  version "5.5.8"
-  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.8.tgz#6649adfdfdbb0acf95361fc48f2d0ca6e88bd1cf"
-  integrity sha512-bsl0rYsaZVHlZkynL5O04q6YXDmVjcid6MbOHWqvtE2WWs/EKhp0qchDDhVWlWyQXUffX1G83X9LnMxRl8S/Mw==
+"@types/faker@^5.5.9":
+  version "5.5.9"
+  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.9.tgz#588ede92186dc557bff8341d294335d50d255f0c"
+  integrity sha512-uCx6mP3UY5SIO14XlspxsGjgaemrxpssJI0Ol+GfhxtcKpv9pgRZYsS4eeKeHVLje6Qtc8lGszuBI461+gVZBA==
 
 "@types/js-yaml@^4.0.0":
   version "4.0.3"

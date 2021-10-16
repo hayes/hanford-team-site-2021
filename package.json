@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
-    "@boost/module": "^3.0.0",
+    "@boost/module": "^3.0.1",
     "@giraphql/core": "^2.16.0",
     "@giraphql/plugin-prisma": "^0.10.0",
     "@prisma/client": "^3.2.1",
@@ -33,7 +33,7 @@
     "@graphql-codegen/typescript": "^2.2.4",
     "@graphql-codegen/typescript-operations": "^2.1.8",
     "@graphql-codegen/typescript-react-apollo": "^3.1.6",
-    "@types/faker": "^5.5.8",
+    "@types/faker": "^5.5.9",
     "@types/react": "17.0.30",
     "concurrently": "^6.3.0",
     "eslint": "8.0.1",

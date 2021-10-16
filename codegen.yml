@@ -1,6 +1,6 @@
 overwrite: true
 errorsOnly: true
-schema: graphql/load-schema.js
+schema: graphql/build-schema.js
 documents: 'components/**/!(*.d).{ts,tsx}'
 generates:
   schema.graphql:
