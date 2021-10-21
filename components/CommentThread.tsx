@@ -84,9 +84,9 @@ export default function CommentThread(props: { id: string }) {
       <ol>
         {thread.comments.map((comment) => (
           <li key={comment.id}>
-            <span style={{ fontWeight: "bold" }}>{comment.name}</span>
+            <span className="bold">{comment.name}</span>
             <span> said: </span>
-            <span style={{ fontStyle: "italic", fontSize: "1.5em" }}>
+            <span className="italic text-lg">
               {comment.comment}
             </span>
             <span> at </span>
