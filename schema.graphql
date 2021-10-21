@@ -22,6 +22,21 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+type DumbPiCommand {
+  steps: [DumbPiStep!]!
+}
+
+type DumbPiStep {
+  duration: Int!
+  pins: [DumbPinState!]!
+}
+
+type DumbPinState {
+  level: Int!
+  mode: Int!
+  pin: Int!
+}
+
 type Mutation {
   addComment(comment: CommentInput!, threadId: ID!): CommentThread
   createCommentThread(comments: [CommentInput!]): CommentThread!
@@ -29,4 +44,5 @@ type Mutation {
 
 type Query {
   commentThread(id: ID!): CommentThread!
+  dumbPiCommand: DumbPiCommand!
 }

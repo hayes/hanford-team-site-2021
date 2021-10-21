@@ -1,5 +1,6 @@
 import { db } from "../util/db";
 import { builder } from "./builder";
+import "./dumpi";
 
 builder.mutationType({});
 builder.queryType({});
