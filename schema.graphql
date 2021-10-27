@@ -22,6 +22,30 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+type DrinkIngredient {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  pumps: [DrinkPump!]!
+}
+
+input DrinkIngredientInput {
+  name: String!
+}
+
+type DrinkPump {
+  enabled: Boolean!
+  id: ID!
+  ingredient: DrinkIngredient!
+  pin: Int!
+}
+
+input DrinkPumpInput {
+  enabled: Boolean
+  ingredientId: ID
+  pin: Int!
+}
+
 type DumbPiCommand {
   steps: [DumbPiStep!]!
 }
@@ -40,9 +64,23 @@ type DumbPinState {
 type Mutation {
   addComment(comment: CommentInput!, threadId: ID!): CommentThread
   createCommentThread(comments: [CommentInput!]): CommentThread!
+  createDrinkPump(input: DrinkPumpInput!): DrinkPump!
+  createIngredient(input: DrinkIngredientInput!): DrinkIngredient!
+  deleteIngredient(id: ID!): DrinkIngredient!
+  deletePump(id: ID!): DrinkPump!
+  updateDrinkPump(input: UpdateDrinkPumpInput!): DrinkPump!
 }
 
 type Query {
   commentThread(id: ID!): CommentThread!
+  drinkIngredients: [DrinkIngredient!]!
+  drinkPumps: [DrinkPump!]!
   dumbPiCommand: DumbPiCommand!
+}
+
+input UpdateDrinkPumpInput {
+  enabled: Boolean
+  id: ID!
+  ingredientId: ID
+  pin: Int
 }

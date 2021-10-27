@@ -1,12 +1,16 @@
-import SchemaBuilder from "@giraphql/core";
-import PrismaPlugin from "@giraphql/plugin-prisma";
-import PrismaTypes from "@giraphql/plugin-prisma/generated";
-import { resolvers } from "graphql-scalars";
-import { db } from "../util/db";
+import SchemaBuilder from '@giraphql/core';
+import PrismaPlugin from '@giraphql/plugin-prisma';
+import PrismaTypes from '@giraphql/plugin-prisma/generated';
+import { resolvers } from 'graphql-scalars';
+import { db } from '../util/db';
 
 export const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes;
   Scalars: {
+    ID: {
+      Input: string;
+      Output: string;
+    };
     DateTime: {
       Input: Date;
       Output: Date;
@@ -19,4 +23,4 @@ export const builder = new SchemaBuilder<{
   plugins: [PrismaPlugin],
 });
 
-builder.addScalarType("DateTime", resolvers.DateTime, {});
+builder.addScalarType('DateTime', resolvers.DateTime, {});

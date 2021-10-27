@@ -1,18 +1,17 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import CommentThread from '../components/CommentThread';
+import { CoffeeAdmin } from '../../components/CoffeeAdmin';
 
 const Home: NextPage = () => {
   return (
     <div className="mx-auto w-[500px] mt-8">
       <Head>
-        <title>Hanford Internet Stuff!</title>
-        <meta name="description" content="Spooky scary internet themed frisbee memes" />
+        <title>Coffee admin control</title>
+        <meta name="description" content="Configure the coffee machine" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <CommentThread id="example" />
+      <CoffeeAdmin />
     </div>
   );
 };

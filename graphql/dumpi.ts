@@ -4,14 +4,135 @@
 // returns code to activate pumps by pin to make drink
 // Needs to be updated to return pins and duration based on drink queue
 
-import { builder } from "./builder";
-import rpio from "rpio";
+import { builder } from './builder';
+import rpio from 'rpio';
 
 // Hard coded test drink command
 const command: IDumbPiCommand = {
   steps: [
+    // {
+    //   pins: [
+    //     {
+    //       pin: 2,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //     {
+    //       pin: 3,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 30_000,
+    // },
+    // {
+    //   pins: [
+    //     {
+    //       pin: 4,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 2000,
+    // },
+    // 1 at a time
+    // {
+    //   pins: [
+    //     {
+    //       pin: 1,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 1000,
+    // },
+    // {
+    //   pins: [
+    //     {
+    //       pin: 2,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 1000,
+    // },
+    // {
+    //   pins: [
+    //     {
+    //       pin: 3,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 1000,
+    // },
+    // {
+    //   pins: [
+    //     {
+    //       pin: 4,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 1000,
+    // },
+    // {
+    //   pins: [
+    //     {
+    //       pin: 5,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 1000,
+    // },
+    // {
+    //   pins: [
+    //     {
+    //       pin: 6,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 1000,
+    // },
+    // {
+    //   pins: [
+    //     {
+    //       pin: 7,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 1000,
+    // },
+    // {
+    //   pins: [
+    //     {
+    //       pin: 8,
+    //       level: rpio.LOW,
+    //       mode: rpio.OUTPUT,
+    //     },
+    //   ],
+    //   duration: 1000,
+    // },
     {
       pins: [
+        {
+          pin: 1,
+          level: rpio.LOW,
+          mode: rpio.OUTPUT,
+        },
+      ],
+      duration: 1000,
+    },
+    {
+      pins: [
+        {
+          pin: 1,
+          level: rpio.LOW,
+          mode: rpio.OUTPUT,
+        },
         {
           pin: 2,
           level: rpio.LOW,
@@ -22,18 +143,23 @@ const command: IDumbPiCommand = {
           level: rpio.LOW,
           mode: rpio.OUTPUT,
         },
-      ],
-      duration: 5000,
-    },
-    {
-      pins: [
         {
           pin: 4,
           level: rpio.LOW,
           mode: rpio.OUTPUT,
         },
+        {
+          pin: 5,
+          level: rpio.LOW,
+          mode: rpio.OUTPUT,
+        },
+        {
+          pin: 6,
+          level: rpio.LOW,
+          mode: rpio.OUTPUT,
+        },
       ],
-      duration: 2000,
+      duration: 1000,
     },
   ],
 };
@@ -64,38 +190,34 @@ interface IDumbPiCommand {
   steps: IDumbPiStep[];
 }
 
-const DumbPinState = builder
-  .objectRef<IDumbPiPinState>("DumbPinState")
-  .implement({
-    fields: (t) => ({
-      pin: t.exposeInt("pin"),
-      mode: t.exposeInt("mode"),
-      level: t.exposeInt("level"),
-    }),
-  });
-
-const DumbPiStep = builder.objectRef<IDumbPiStep>("DumbPiStep").implement({
+const DumbPinState = builder.objectRef<IDumbPiPinState>('DumbPinState').implement({
   fields: (t) => ({
-    duration: t.exposeInt("duration"),
-    pins: t.expose("pins", {
+    pin: t.exposeInt('pin'),
+    mode: t.exposeInt('mode'),
+    level: t.exposeInt('level'),
+  }),
+});
+
+const DumbPiStep = builder.objectRef<IDumbPiStep>('DumbPiStep').implement({
+  fields: (t) => ({
+    duration: t.exposeInt('duration'),
+    pins: t.expose('pins', {
       type: [DumbPinState],
     }),
   }),
 });
 
-const DumbPiCommand = builder
-  .objectRef<IDumbPiCommand>("DumbPiCommand")
-  .implement({
-    fields: (t) => ({
-      steps: t.expose("steps", {
-        type: [DumbPiStep],
-      }),
+const DumbPiCommand = builder.objectRef<IDumbPiCommand>('DumbPiCommand').implement({
+  fields: (t) => ({
+    steps: t.expose('steps', {
+      type: [DumbPiStep],
     }),
-  });
+  }),
+});
 
-builder.queryField("dumbPiCommand", (t) =>
+builder.queryField('dumbPiCommand', (t) =>
   t.field({
     type: DumbPiCommand,
     resolve: () => command,
-  })
+  }),
 );

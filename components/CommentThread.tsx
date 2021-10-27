@@ -1,6 +1,9 @@
-import { gql } from "@apollo/client";
-import { useState } from "react";
-import { useAddCommentMutation, useCommentThreadQuery } from "../graphql/__generated__/operations.generated";
+import { gql } from '@apollo/client';
+import { useState } from 'react';
+import {
+  useAddCommentMutation,
+  useCommentThreadQuery,
+} from '../graphql/__generated__/operations.generated';
 
 gql`
   query commentThread($id: ID!) {
@@ -18,10 +21,7 @@ gql`
 
 gql`
   mutation addComment($threadId: ID!, $name: String!, $comment: String!) {
-    addComment(
-      threadId: $threadId
-      comment: { name: $name, comment: $comment }
-    ) {
+    addComment(threadId: $threadId, comment: { name: $name, comment: $comment }) {
       id
       comments {
         id
@@ -34,9 +34,9 @@ gql`
 `;
 
 export default function CommentThread(props: { id: string }) {
-  const [name, setName] = useState("");
-  const [newComment, setNewComment] = useState("");
-  const [addComment, addCommentResult] = useAddCommentMutation({})
+  const [name, setName] = useState('');
+  const [newComment, setNewComment] = useState('');
+  const [addComment, addCommentResult] = useAddCommentMutation({});
 
   const { data, loading, error } = useCommentThreadQuery({
     variables: {
@@ -47,12 +47,7 @@ export default function CommentThread(props: { id: string }) {
   if (loading) {
     return (
       <h2>
-        <a
-          href="#loading"
-          aria-hidden="true"
-          className="aal_anchor"
-          id="loading"
-        >
+        <a href="#loading" aria-hidden="true" className="aal_anchor" id="loading">
           <svg
             aria-hidden="true"
             className="aal_svg"
@@ -86,42 +81,59 @@ export default function CommentThread(props: { id: string }) {
           <li key={comment.id}>
             <span className="bold">{comment.name}</span>
             <span> said: </span>
-            <span className="italic text-lg">
-              {comment.comment}
-            </span>
+            <span className="italic text-lg">{comment.comment}</span>
             <span> at </span>
             <span>{new Date(comment.createdAt).toLocaleString()}</span>
           </li>
         ))}
       </ol>
-      <label>
-        Name:
-        <input
-          type="text"
-          value={name}
-          onChange={(ev) => setName(ev.target.value)}
-        />
-      </label>
-      <label>
-        Comment:
-        <textarea
-          value={newComment}
-          onChange={(ev) => setNewComment(ev.target.value)}
-        />
-      </label>
-      <button
-        onClick={() => {
-          addComment({
+      <form>
+        <div className="my-4">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Screen name
+          </label>
+          <div className="mt-1">
+            <input
+            onChange={  ev => setName(ev.target.value)}
+              type="text"
+              name="name"
+              id="name"
+              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              placeholder="Enter your oldest screen name"
+            />
+          </div>
+        </div>
+        <div className="my-4">
+          <label htmlFor="comment" className="block text-sm font-medium text-gray-700">
+            Comment
+          </label>
+          <div className="mt-1">
+            <textarea
+              onChange={ev => setNewComment(ev.target.value)}
+              name="comment"
+              id="comment"
+              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              placeholder="Say something nice"
+            />
+          </div>
+        </div>
+        <button
+          type="button"
+          className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          disabled={!newComment || !name}
+          onClick={() => {
+            addComment({
               variables: {
-                  threadId: props.id,
-                  name,
-                  comment: newComment,
-              }
-          })
-        }}
-      >
-        Add comment
-      </button>
+                threadId: props.id,
+                name,
+                comment: newComment,
+              },
+            });
+          }}
+        >
+          Add comment
+        </button>
+      </form>
     </div>
   );
 }

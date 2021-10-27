@@ -1,33 +1,34 @@
-import { db } from "../util/db";
-import { builder } from "./builder";
-import "./dumpi";
+import { db } from '../util/db';
+import { builder } from './builder';
+import './dumpi';
+import './drink-machine';
 
 builder.mutationType({});
 builder.queryType({});
 
-builder.prismaObject("CommentThread", {
+builder.prismaObject('CommentThread', {
   findUnique: (thread) => ({ id: thread.id }),
   fields: (t) => ({
-    id: t.exposeID("id"),
-    comments: t.relation("comments"),
+    id: t.exposeID('id'),
+    comments: t.relation('comments'),
   }),
 });
 
-builder.prismaObject("Comment", {
+builder.prismaObject('Comment', {
   findUnique: (thread) => ({ id: thread.id }),
   fields: (t) => ({
-    id: t.exposeID("id"),
-    createdAt: t.expose("createdAt", { type: "DateTime" }),
-    updatedAt: t.expose("updatedAt", { type: "DateTime" }),
-    thread: t.relation("thread"),
-    name: t.exposeString("name"),
-    comment: t.exposeString("comment"),
+    id: t.exposeID('id'),
+    createdAt: t.expose('createdAt', { type: 'DateTime' }),
+    updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    thread: t.relation('thread'),
+    name: t.exposeString('name'),
+    comment: t.exposeString('comment'),
   }),
 });
 
-builder.queryField("commentThread", (t) =>
+builder.queryField('commentThread', (t) =>
   t.prismaField({
-    type: "CommentThread",
+    type: 'CommentThread',
     args: {
       id: t.arg.id({ required: true }),
     },
@@ -37,19 +38,19 @@ builder.queryField("commentThread", (t) =>
         where: { id: String(args.id) },
         rejectOnNotFound: true,
       }),
-  })
+  }),
 );
 
-const CommentInput = builder.inputType("CommentInput", {
+const CommentInput = builder.inputType('CommentInput', {
   fields: (t) => ({
     name: t.string({ required: true }),
     comment: t.string({ required: true }),
   }),
 });
 
-builder.mutationField("createCommentThread", (t) =>
+builder.mutationField('createCommentThread', (t) =>
   t.prismaField({
-    type: "CommentThread",
+    type: 'CommentThread',
     args: {
       comments: t.arg({ type: [CommentInput], required: false }),
     },
@@ -67,12 +68,12 @@ builder.mutationField("createCommentThread", (t) =>
             : undefined,
         },
       }),
-  })
+  }),
 );
 
-builder.mutationField("addComment", (t) =>
+builder.mutationField('addComment', (t) =>
   t.prismaField({
-    type: "CommentThread",
+    type: 'CommentThread',
     args: {
       threadId: t.arg.id({ required: true }),
       comment: t.arg({ type: CommentInput, required: true }),
@@ -90,7 +91,7 @@ builder.mutationField("addComment", (t) =>
         .thread({
           ...query,
         }),
-  })
+  }),
 );
 
 export const schema = builder.toSchema({});
