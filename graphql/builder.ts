@@ -1,6 +1,6 @@
 import SchemaBuilder from '@giraphql/core';
 import PrismaPlugin from '@giraphql/plugin-prisma';
-import PrismaTypes from '@giraphql/plugin-prisma/generated';
+import type PrismaTypes from '@giraphql/plugin-prisma/generated';
 import { resolvers } from 'graphql-scalars';
 import { db } from '../util/db';
 
