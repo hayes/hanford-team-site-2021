@@ -54,7 +54,7 @@ async function main() {
     await db.drinkIngredient.create({
       data: {
         name: ingredient.name,
-        pump: {
+        pumps: {
           create: [
             {
               pin: ingredient.pin,
