@@ -36,5 +36,6 @@ yarn-error.log*
 # codgen
 __generated__
 .generated.ts
+prisma/client
 
 **/.env
