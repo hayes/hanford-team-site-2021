@@ -36,3 +36,5 @@ yarn-error.log*
 # codgen
 __generated__
 .generated.ts
+
+**/.env
