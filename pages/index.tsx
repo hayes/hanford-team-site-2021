@@ -9,18 +9,18 @@ import saladFingers from '../public/salad-fingers.png';
 import teapot from '../public/teapot.jpg';
 import gore from '../public/gore.jpg';
 import doge from '../public/doge.jpg';
-import { ViewCount } from '../components/ViewCount';
+
+import { Header } from '../components/Header';
 
 const Home: NextPage = () => (
-  <div className="mx-auto max-w-[700px] mt-8">
+  <div className="mx-auto max-w-[700px] p-4">
     <Head>
       <title>The ARPANET</title>
       <meta name="description" content="Spooky scary internet themed frisbee memes" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <h1 className="text-4xl my-4">The ARPANET at Hanford Howl 2021</h1>
-
-    <ViewCount name="home-page" />
+    <Header page="home" />
+    <h1 className="text-2xl my-4">The ARPANET at Hanford Howl 2021</h1>
 
     <h2 className="my-4 text-2xl">Kermit memes</h2>
     <div className="max-w-[450px] m-auto">

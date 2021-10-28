@@ -48,5 +48,5 @@ export function ViewCount({ name }: { name: string }) {
     return null;
   }
 
-  return <div className="absolute top-0 right-8">view count: {data.viewCount.count}</div>;
+  return <div>view count: {data.viewCount.count}</div>;
 }

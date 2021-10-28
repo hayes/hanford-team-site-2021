@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { CoffeeOrderForm } from '../../components/CoffeeOrderForm';
 import { CursorBlink } from '../../components/CursorBlink';
 import { DrinkOrderQueue } from '../../components/DrinkOrderQueue';
+import { Header } from '../../components/Header';
 import { TypingSimulation } from '../../components/TypingSimulation';
 import { ViewCount } from '../../components/ViewCount';
 
@@ -14,14 +15,16 @@ curl BREW http://localhost:3000/api/htcpcp
 `.trimLeft();
 
   return (
-    <div className="mx-auto max-w-[750px] p-8">
+    <div className="mx-auto max-w-[750px] p-4">
       <Head>
         <title>HTCPCP</title>
         <meta name="description" content="Configure the coffee machine" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="text-xl mb-8">
+      <Header page="coffee" />
+
+      <h1 className="text-2xl mb-8">
         Hyper Text Coffee Pot Control Protocol (
         <a
           className="text-blue-800 hover:text-blue-500 underline"
@@ -31,8 +34,6 @@ curl BREW http://localhost:3000/api/htcpcp
         </a>
         )
       </h1>
-
-      <ViewCount name="coffee" />
 
       <p>
         1998 was scary time. The internet was young and controlling coffee pots over the internet
