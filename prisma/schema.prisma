@@ -33,17 +33,30 @@ model Comment {
 }
 
 model DumbPiCommand {
-  id        String   @id @default(uuid())
-  createdAt DateTime @unique @default(now())
-  command   String
-  type      String
+  id         String      @id @default(uuid())
+  createdAt  DateTime    @unique @default(now())
+  command    String
+  type       String
+  drinkOrder DrinkOrder?
 }
 
 model DrinkIngredient {
-  id        String      @id @default(uuid())
-  createdAt DateTime    @unique @default(now())
+  id         String      @id @default(uuid())
+  createdAt  DateTime    @unique @default(now())
+  name       String
+  pumps      DrinkPump[]
+  max        Int         @default(0)
+  multiplier Int         @default(1)
+  increment  Int         @default(1)
+  unit       String      @default("ms")
+}
+
+model DrinkOrder {
+  id        String        @id @default(uuid())
+  createdAt DateTime      @unique @default(now())
   name      String
-  pumps     DrinkPump[]
+  command   DumbPiCommand @relation(fields: [commandId], references: [id])
+  commandId String        @unique
 }
 
 model DrinkPump {

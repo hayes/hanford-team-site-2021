@@ -25,11 +25,26 @@ scalar DateTime
 type DrinkIngredient {
   createdAt: DateTime!
   id: ID!
+  increment: Int!
+  max: Int!
+  multiplier: Int!
   name: String!
   pumps: [DrinkPump!]!
+  unit: String!
 }
 
 input DrinkIngredientInput {
+  increment: Int!
+  max: Int!
+  multiplier: Int!
+  name: String!
+  unit: String!
+}
+
+type DrinkOrder {
+  command: DumbPiCommand!
+  createdAt: DateTime!
+  id: ID!
   name: String!
 }
 
@@ -56,6 +71,7 @@ type DumbPiStep {
 }
 
 type DumbPinState {
+  ingredient: DrinkIngredient
   level: Int!
   mode: Int!
   pin: Int!
@@ -69,13 +85,24 @@ type Mutation {
   deleteIngredient(id: ID!): DrinkIngredient!
   deletePump(id: ID!): DrinkPump!
   updateDrinkPump(input: UpdateDrinkPumpInput!): DrinkPump!
+  updateIngredient(input: UpdateDrinkIngredientInput!): DrinkIngredient!
 }
 
 type Query {
   commentThread(id: ID!): CommentThread!
   drinkIngredients: [DrinkIngredient!]!
+  drinkOrders: [DrinkOrder!]!
   drinkPumps: [DrinkPump!]!
   dumbPiCommand: DumbPiCommand!
+}
+
+input UpdateDrinkIngredientInput {
+  id: ID!
+  increment: Int
+  max: Int
+  multiplier: Int
+  name: String
+  unit: String
 }
 
 input UpdateDrinkPumpInput {

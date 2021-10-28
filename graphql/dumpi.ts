@@ -6,6 +6,7 @@
 
 import { builder } from './builder';
 import rpio from 'rpio';
+import { db } from '../lib/db';
 
 // Hard coded test drink command
 const command: IDumbPiCommand = {
@@ -195,6 +196,21 @@ const DumbPinState = builder.objectRef<IDumbPiPinState>('DumbPinState').implemen
     pin: t.exposeInt('pin'),
     mode: t.exposeInt('mode'),
     level: t.exposeInt('level'),
+    ingredient: t.prismaField({
+      type: 'DrinkIngredient',
+      nullable: true,
+      resolve: (query, step) =>
+        db.drinkIngredient.findFirst({
+          ...query,
+          where: {
+            pumps: {
+              some: {
+                pin: step.pin,
+              },
+            },
+          },
+        }),
+    }),
   }),
 });
 
@@ -207,7 +223,7 @@ const DumbPiStep = builder.objectRef<IDumbPiStep>('DumbPiStep').implement({
   }),
 });
 
-const DumbPiCommand = builder.objectRef<IDumbPiCommand>('DumbPiCommand').implement({
+export const DumbPiCommand = builder.objectRef<IDumbPiCommand>('DumbPiCommand').implement({
   fields: (t) => ({
     steps: t.expose('steps', {
       type: [DumbPiStep],
