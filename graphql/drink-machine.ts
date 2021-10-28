@@ -1,4 +1,4 @@
-import { db } from '../util/db';
+import { db } from '../lib/db';
 import { builder } from './builder';
 
 builder.prismaObject('DrinkIngredient', {

@@ -1,5 +1,4 @@
 overwrite: true
-errorsOnly: true
 schema: graphql/build-schema.js
 documents: 'components/**/!(*.d).{ts,tsx}'
 generates:

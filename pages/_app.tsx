@@ -1,7 +1,7 @@
-import 'tailwindcss/tailwind.css'
-import type { AppProps } from "next/app";
-import { ApolloProvider } from "@apollo/client";
-import client from "../util/apollo-client";
+import 'tailwindcss/tailwind.css';
+import type { AppProps } from 'next/app';
+import { ApolloProvider } from '@apollo/client';
+import client from '../lib/apollo-client';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

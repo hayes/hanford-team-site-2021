@@ -2,7 +2,7 @@ import SchemaBuilder from '@giraphql/core';
 import PrismaPlugin from '@giraphql/plugin-prisma';
 import type PrismaTypes from '@giraphql/plugin-prisma/generated';
 import { resolvers } from 'graphql-scalars';
-import { db } from '../util/db';
+import { db } from '../lib/db';
 
 export const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes;
