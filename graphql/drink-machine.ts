@@ -16,6 +16,7 @@ builder.prismaObject('DrinkIngredient', {
     increment: t.exposeInt('increment'),
     multiplier: t.exposeInt('multiplier'),
     unit: t.exposeString('unit'),
+    default: t.exposeInt('default'),
   }),
 });
 
@@ -78,6 +79,7 @@ const DrinkIngredientInput = builder.inputType('DrinkIngredientInput', {
     increment: t.int({ required: true }),
     multiplier: t.int({ required: true }),
     unit: t.string({ required: true }),
+    default: t.int({ required: true }),
   }),
 });
 
@@ -89,6 +91,7 @@ const UpdateDrinkIngredientInput = builder.inputType('UpdateDrinkIngredientInput
     increment: t.int({ required: false }),
     multiplier: t.int({ required: false }),
     unit: t.string({ required: false }),
+    default: t.int({ required: false }),
   }),
 });
 
@@ -107,6 +110,7 @@ builder.mutationField('createIngredient', (t) =>
           increment: args.input.increment,
           multiplier: args.input.multiplier,
           unit: args.input.unit,
+          default: args.input.default,
         },
       }),
   }),
@@ -128,6 +132,7 @@ builder.mutationField('updateIngredient', (t) =>
           increment: args.input.increment ?? undefined,
           multiplier: args.input.multiplier ?? undefined,
           unit: args.input.unit ?? undefined,
+          default: args.input.default ?? undefined,
         },
       }),
   }),

@@ -49,6 +49,7 @@ model DrinkIngredient {
   multiplier Int         @default(1)
   increment  Int         @default(1)
   unit       String      @default("ms")
+  default    Int         @default(0)
 }
 
 model DrinkOrder {

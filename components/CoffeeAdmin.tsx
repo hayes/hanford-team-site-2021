@@ -14,6 +14,7 @@ gql`
       max
       unit
       multiplier
+      default
       pumps {
         id
         pin
@@ -69,6 +70,7 @@ export function CoffeeAdmin() {
             <th>Max</th>
             <th>Inc</th>
             <th>Mult</th>
+            <th>Default</th>
             <th className="w-24">Unit</th>
             <th></th>
           </tr>

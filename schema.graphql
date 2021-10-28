@@ -24,6 +24,7 @@ scalar DateTime
 
 type DrinkIngredient {
   createdAt: DateTime!
+  default: Int!
   id: ID!
   increment: Int!
   max: Int!
@@ -34,6 +35,7 @@ type DrinkIngredient {
 }
 
 input DrinkIngredientInput {
+  default: Int!
   increment: Int!
   max: Int!
   multiplier: Int!
@@ -97,6 +99,7 @@ type Query {
 }
 
 input UpdateDrinkIngredientInput {
+  default: Int
   id: ID!
   increment: Int
   max: Int

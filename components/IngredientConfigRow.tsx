@@ -11,6 +11,7 @@ interface Drink {
   max: number;
   unit: string;
   multiplier: number;
+  default: number;
   pumps: {
     id: string;
     pin: number;
@@ -27,6 +28,7 @@ gql`
       max
       unit
       multiplier
+      default
       pumps {
         id
         pin
@@ -42,6 +44,7 @@ export const IngredientConfigRow = ({ drink, refresh }: { drink: Drink; refresh:
   const [unit, setUnit] = useState(drink.unit);
   const [max, setMax] = useState(drink.max);
   const [pumps, setPumps] = useState(drink.pumps);
+  const [defaultVal, setDefault] = useState(drink.default);
 
   const [updateIngredient] = useUpdateIngredientMutation({
     onCompleted: () => refresh(),
@@ -63,6 +66,9 @@ export const IngredientConfigRow = ({ drink, refresh }: { drink: Drink; refresh:
         <NumberInput hideControls value={multiplier} onChange={(value) => setMultiplier(value)} />
       </td>
       <td>
+        <NumberInput hideControls value={defaultVal} onChange={(value) => setDefault(value)} />
+      </td>
+      <td>
         <TextInput value={unit} onChange={(ev) => setUnit(ev.target.value)} />
       </td>
       <td>
@@ -77,6 +83,7 @@ export const IngredientConfigRow = ({ drink, refresh }: { drink: Drink; refresh:
                   multiplier,
                   unit,
                   max,
+                  default: defaultVal,
                 },
               },
             });

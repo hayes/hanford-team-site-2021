@@ -76,17 +76,6 @@ export default function CommentThread(props: { id: string }) {
 
   return (
     <div>
-      <ol>
-        {thread.comments.map((comment) => (
-          <li key={comment.id}>
-            <span className="bold">{comment.name}</span>
-            <span> said: </span>
-            <span className="italic text-lg">{comment.comment}</span>
-            <span> at </span>
-            <span>{new Date(comment.createdAt).toLocaleString()}</span>
-          </li>
-        ))}
-      </ol>
       <form>
         <div className="my-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -94,7 +83,7 @@ export default function CommentThread(props: { id: string }) {
           </label>
           <div className="mt-1">
             <input
-            onChange={  ev => setName(ev.target.value)}
+              onChange={(ev) => setName(ev.target.value)}
               type="text"
               name="name"
               id="name"
@@ -109,7 +98,7 @@ export default function CommentThread(props: { id: string }) {
           </label>
           <div className="mt-1">
             <textarea
-              onChange={ev => setNewComment(ev.target.value)}
+              onChange={(ev) => setNewComment(ev.target.value)}
               name="comment"
               id="comment"
               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
@@ -134,6 +123,18 @@ export default function CommentThread(props: { id: string }) {
           Add comment
         </button>
       </form>
+
+      <ol className="my-8">
+        {thread.comments.map((comment) => (
+          <li key={comment.id}>
+            <span className="bold">{comment.name}</span>
+            <span> said: </span>
+            <span className="italic text-lg">{comment.comment}</span>
+            <span> at </span>
+            <span>{new Date(comment.createdAt).toLocaleString()}</span>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }

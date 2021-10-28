@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { CoffeeOrderForm } from '../../components/CoffeeOrderForm';
 import { CursorBlink } from '../../components/CursorBlink';
 import { TypingSimulation } from '../../components/TypingSimulation';
 
@@ -38,9 +39,7 @@ curl BREW http://localhost:3000/api/htcpcp
         machine might have looked like back then:
       </p>
 
-      <pre className="bg-black text-green-400 p-4 my-8 border-gray-500 border-4 whitespace-pre-wrap">
-        <TypingSimulation text={command} />
-      </pre>
+      <CoffeeOrderForm />
     </div>
   );
 };
