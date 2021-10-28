@@ -22,7 +22,7 @@ const Home: NextPage = () => (
     <Header page="home" />
     <h1 className="text-2xl my-4">The ARPANET at Hanford Howl 2021</h1>
 
-    <h2 className="my-4 text-2xl">Kermit memes</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Kermit memes</h2>
     <div className="max-w-[450px] m-auto">
       <Image alt="Kermit memes" src={kermit} layout="responsive" />
     </div>
@@ -38,7 +38,7 @@ const Home: NextPage = () => (
       </a>{' '}
       How many of the kermit memes do you remember? How many can you spot this weekend at Hanford?
     </p>
-    <h2 className="my-4 text-2xl">Series of tubes</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Series of tubes</h2>
     <div className="video-container w-full">
       <iframe
         src="https://www.youtube.com/embed/R8XSo0etBC4"
@@ -53,7 +53,7 @@ const Home: NextPage = () => (
       for a few games and will be sending information where it needs to go.. through the tubes of
       course.
     </p>
-    <h2 className="my-4 text-2xl">Kid with a knife</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Kid with a knife</h2>
     <div className="video-container w-full">
       <iframe
         src="https://www.youtube.com/embed/B7D2Oq7LDkc"
@@ -68,9 +68,9 @@ const Home: NextPage = () => (
       have? One of our players will also be running around with a knife this weekend. Please know
       that it is fake. No one will be harmed in the recreating of this vine.
     </p>
-    <h2 className="my-4 text-2xl">My immortal</h2>
+    <h2 className="mt-16 mb-4 text-2xl">My immortal</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">Sexy cow hair</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Sexy cow hair</h2>
 
     <video
       className="margin-auto"
@@ -89,7 +89,7 @@ const Home: NextPage = () => (
       There are normal cows, and then there are sexy cows. This is one of the latter. You'll know
       her when you see her.
     </p>
-    <h2 className="my-4 text-2xl">Aol running guy</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Aol running guy</h2>
     <div className="max-w-[450px] m-auto">
       <Image alt="Aol running guy" src={aol} layout="responsive" />
     </div>
@@ -101,9 +101,9 @@ const Home: NextPage = () => (
       CDs. Now that's a lot of CDs! A special gift will be given to any player who can bring us a CD
       with the AOL logo printed on it!
     </p>
-    <h2 className="my-4 text-2xl">Jeeves</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Jeeves</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">Salad fingers</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Salad fingers</h2>
 
     <Image alt="Salad fingers memes" src={saladFingers} layout="responsive" />
 
@@ -119,15 +119,15 @@ const Home: NextPage = () => (
         this link
       </a>{' '}
     </p>
-    <h2 className="my-4 text-2xl">Dude with a sign</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Dude with a sign</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">Hot single in your area</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Hot single in your area</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">OnlyFans girl</h2>
+    <h2 className="mt-16 mb-4 text-2xl">OnlyFans girl</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">Honey badger</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Honey badger</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">RFC 2324</h2>
+    <h2 className="mt-16 mb-4 text-2xl">RFC 2324</h2>
     <Image alt="RFC 2324" src={teapot} layout="responsive" />
     <p className="my-8 text-md">
       In order to understand this reference, you must already be the type of nerd that is beyond my
@@ -136,7 +136,7 @@ const Home: NextPage = () => (
       joke. Have no fear; ultimate frisbee is full of this type of intelligent and cool person who
       is willing to share about RFC 2324. If you can't find one on your team, our team has plenty.
     </p>
-    <h2 className="my-4 text-2xl">AL Gore</h2>
+    <h2 className="mt-16 mb-4 text-2xl">AL Gore</h2>
     <Image alt="Al gore" src={gore} layout="responsive" />
     <p className="my-8 text-md">
       Don't pay any attention to{' '}
@@ -150,9 +150,9 @@ const Home: NextPage = () => (
       He is the patron saint of this team and all other comments will be conside blasphemy! Long
       live Al Gore! Long live the internet!{' '}
     </p>
-    <h2 className="my-4 text-2xl">I put on my robe and wizard hat.</h2>
+    <h2 className="mt-16 mb-4 text-2xl">I put on my robe and wizard hat.</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">Doge</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Doge</h2>
     <div className="max-w-[300px] m-auto">
       <Image alt="Doge" src={doge} layout="responsive" />
     </div>
@@ -161,13 +161,13 @@ const Home: NextPage = () => (
       of speaking some theorize is the future of American English. It's already taking over the
       crypto world. What can't this akita do?{' '}
     </p>
-    <h2 className="my-4 text-2xl">Snoo</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Snoo</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">Ice bucket challenge</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Ice bucket challenge</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">Homestarrunner</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Homestarrunner</h2>
     <p className="my-8 text-md">Description</p>
-    <h2 className="my-4 text-2xl">Fry</h2>
+    <h2 className="mt-16 mb-4 text-2xl">Fry</h2>
     <p className="my-8 text-md">Description</p>
 
     <h2 className="text-2xl bold my-4">Say hi!</h2>
