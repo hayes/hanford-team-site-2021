@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "prisma generate && yarn generate && next build",
+    "build": "PRISMA_CLIENT_ENGINE_TYPE='dataproxy' prisma generate && yarn generate && next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "prisma generate",
-    "postinstall": "prisma generate",
     "generate": "graphql-codegen",
     "dev": "concurrently \"yarn next dev\" \"yarn generate --watch './graphql/**/*.ts'\"",
     "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\""
