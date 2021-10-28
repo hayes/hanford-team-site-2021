@@ -1,6 +1,8 @@
 import { Button, Group, Select, TextInput } from '@mantine/core';
+import axios, { AxiosResponse } from 'axios';
 import gql from 'graphql-tag';
 import { useEffect, useRef, useState } from 'react';
+import { useMutation } from 'react-query';
 import { useDrinkIngredientsQuery } from '../graphql/__generated__/operations.generated';
 import { TypingSimulation } from './TypingSimulation';
 
@@ -54,6 +56,48 @@ export function CoffeeOrderForm() {
   const [command, setCommand] = useState('');
   const [orderId, setOrderId] = useState(0);
 
+  const coffeeOrder = useMutation<
+    unknown,
+    unknown,
+    {
+      headers: Record<string, string>;
+    }
+  >({
+    mutationFn: ({ headers }) => {
+      return axios.post('/api/htcpcp', '', {
+        headers,
+        validateStatus: () => true,
+      });
+    },
+    onSettled,
+  });
+
+  const teaOrder = useMutation({
+    mutationFn: (data) => {
+      return axios.post('/api/tea', {
+        validateStatus: () => true,
+      });
+    },
+    onSettled,
+  });
+
+  function onSettled(data: unknown, error: unknown) {
+    const { status, statusText, data: responseText } = data as AxiosResponse<string>;
+    console.log(data, error);
+
+    const response = [
+      '',
+      `< HTCPCP/1.0 ${status} ${statusText}`,
+      `< Content-Length: ${responseText.length}`,
+      `<`,
+      responseText,
+      `* Closing connection 0`,
+      '',
+    ].join('\n');
+
+    setCommand((prev) => prev + response);
+  }
+
   useEffect(() => {
     if (data) {
       data.drinkIngredients.forEach((ingredient) => {
@@ -77,20 +121,33 @@ export function CoffeeOrderForm() {
       .join(',');
 
     const orderCommand = [
-      `BREW /api${endpoint} HTCPCP/1.0`,
-      `HOST ${HOST}`,
-      `User-Agent: ${name}`,
-      `Content-Type:application/coffee-pot-command`,
-      `Accept-Additions:${additions}\n\n`,
+      `> BREW /api${endpoint} HTCPCP/1.0`,
+      `> HOST ${HOST}`,
+      `> User-Agent: ${name}`,
+      `> Content-Type:application/coffee-pot-command`,
+      `> Accept-Additions:${additions}`,
+      `>\n`,
     ].join('\n');
 
     setOrderId((prev) => prev + 1);
     setCommand(orderCommand);
+
+    if (endpoint === '/htcpcp') {
+      coffeeOrder.mutate({
+        headers: {
+          'Content-Type': 'application/coffee-pot-command',
+          'Accept-Additions': additions,
+          'Requested-By': name,
+        },
+      });
+    } else {
+      teaOrder.mutate();
+    }
   }
 
   return (
     <>
-      <form className="shadow-md my-4 p-4">
+      <form className="shadow-md my-4">
         <Group grow align="end">
           {data.drinkIngredients
             .filter(({ pumps }) => pumps.some(({ enabled }) => enabled))

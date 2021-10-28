@@ -1,7 +1,6 @@
-import build from 'next/dist/build';
 import { db } from '../lib/db';
 import { builder } from './builder';
-import { DumbPiCommand } from './dumpi';
+import { DumbPiCommand, IDumbPiCommand } from './dumpi';
 
 builder.prismaObject('DrinkIngredient', {
   findUnique: (drink) => ({ id: drink.id }),
@@ -69,6 +68,16 @@ builder.mutationField('deletePump', (t) =>
       id: t.arg.id({ required: true }),
     },
     resolve: (query, root, args) => db.drinkPump.delete({ ...query, where: { id: args.id } }),
+  }),
+);
+
+builder.mutationField('deleteOrder', (t) =>
+  t.prismaField({
+    type: 'DrinkOrder',
+    args: {
+      id: t.arg.id({ required: true }),
+    },
+    resolve: (query, root, args) => db.drinkOrder.delete({ ...query, where: { id: args.id } }),
   }),
 );
 
@@ -220,6 +229,35 @@ builder.prismaObject('DrinkOrder', {
     command: t.field({
       type: DumbPiCommand,
       resolve: (order) => JSON.parse(order.command.command),
+    }),
+    summary: t.string({
+      resolve: async (order) => {
+        const command = JSON.parse(order.command.command) as IDumbPiCommand;
+        const pins = new Set(command.steps.flatMap((step) => step.pins.map((pin) => pin.pin)));
+        const ingredients = await db.drinkIngredient.findMany({
+          where: {
+            pumps: {
+              some: {
+                pin: {
+                  in: [...pins],
+                },
+              },
+            },
+          },
+        });
+
+        if (!ingredients.length) {
+          return 'Empty order';
+        }
+
+        if (ingredients.length === 1) {
+          return ingredients[0].name;
+        }
+
+        const last = ingredients.pop();
+
+        return `${ingredients.map((ingredient) => ingredient.name).join(', ')} and ${last?.name}`;
+      },
     }),
   }),
 });

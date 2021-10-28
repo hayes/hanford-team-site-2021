@@ -5,189 +5,31 @@
 // Needs to be updated to return pins and duration based on drink queue
 
 import { builder } from './builder';
-import rpio from 'rpio';
 import { db } from '../lib/db';
 
-// Hard coded test drink command
-const command: IDumbPiCommand = {
-  steps: [
-    // {
-    //   pins: [
-    //     {
-    //       pin: 2,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //     {
-    //       pin: 3,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 30_000,
-    // },
-    // {
-    //   pins: [
-    //     {
-    //       pin: 4,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 2000,
-    // },
-    // 1 at a time
-    // {
-    //   pins: [
-    //     {
-    //       pin: 1,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 1000,
-    // },
-    // {
-    //   pins: [
-    //     {
-    //       pin: 2,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 1000,
-    // },
-    // {
-    //   pins: [
-    //     {
-    //       pin: 3,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 1000,
-    // },
-    // {
-    //   pins: [
-    //     {
-    //       pin: 4,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 1000,
-    // },
-    // {
-    //   pins: [
-    //     {
-    //       pin: 5,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 1000,
-    // },
-    // {
-    //   pins: [
-    //     {
-    //       pin: 6,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 1000,
-    // },
-    // {
-    //   pins: [
-    //     {
-    //       pin: 7,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 1000,
-    // },
-    // {
-    //   pins: [
-    //     {
-    //       pin: 8,
-    //       level: rpio.LOW,
-    //       mode: rpio.OUTPUT,
-    //     },
-    //   ],
-    //   duration: 1000,
-    // },
-    {
-      pins: [
-        {
-          pin: 1,
-          level: rpio.LOW,
-          mode: rpio.OUTPUT,
-        },
-      ],
-      duration: 1000,
-    },
-    {
-      pins: [
-        {
-          pin: 1,
-          level: rpio.LOW,
-          mode: rpio.OUTPUT,
-        },
-        {
-          pin: 2,
-          level: rpio.LOW,
-          mode: rpio.OUTPUT,
-        },
-        {
-          pin: 3,
-          level: rpio.LOW,
-          mode: rpio.OUTPUT,
-        },
-        {
-          pin: 4,
-          level: rpio.LOW,
-          mode: rpio.OUTPUT,
-        },
-        {
-          pin: 5,
-          level: rpio.LOW,
-          mode: rpio.OUTPUT,
-        },
-        {
-          pin: 6,
-          level: rpio.LOW,
-          mode: rpio.OUTPUT,
-        },
-      ],
-      duration: 1000,
-    },
-  ],
-};
-
-enum PinLevel {
+export enum PinLevel {
   LOW = 0,
   HIGH = 1,
 }
 
-enum PinMode {
+export enum PinMode {
   INPUT = 0,
   OUTPUT = 1,
   PWM = 2,
 }
 
-interface IDumbPiPinState {
+export interface IDumbPiPinState {
   pin: number;
   mode: PinMode;
   level: PinLevel;
 }
 
-interface IDumbPiStep {
+export interface IDumbPiStep {
   pins: IDumbPiPinState[];
   duration: number;
 }
 
-interface IDumbPiCommand {
+export interface IDumbPiCommand {
   steps: IDumbPiStep[];
 }
 
@@ -234,6 +76,28 @@ export const DumbPiCommand = builder.objectRef<IDumbPiCommand>('DumbPiCommand').
 builder.queryField('dumbPiCommand', (t) =>
   t.field({
     type: DumbPiCommand,
-    resolve: () => command,
+    nullable: true,
+    resolve: async () => {
+      const order = await db.drinkOrder.findFirst({
+        include: {
+          command: true,
+        },
+        orderBy: {
+          createdAt: 'asc',
+        },
+      });
+
+      if (!order) {
+        return null;
+      }
+
+      await db.drinkOrder.delete({
+        where: { id: order.id },
+      });
+
+      const command = JSON.parse(order.command.command) as IDumbPiCommand;
+
+      return command;
+    },
   }),
 );

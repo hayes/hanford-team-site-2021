@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { CoffeeOrderForm } from '../../components/CoffeeOrderForm';
 import { CursorBlink } from '../../components/CursorBlink';
+import { DrinkOrderQueue } from '../../components/DrinkOrderQueue';
 import { TypingSimulation } from '../../components/TypingSimulation';
 
 const Home: NextPage = () => {
@@ -12,7 +13,7 @@ curl BREW http://localhost:3000/api/htcpcp
 `.trimLeft();
 
   return (
-    <div className="mx-auto max-w-[750px] p-4">
+    <div className="mx-auto max-w-[750px] p-8">
       <Head>
         <title>HTCPCP</title>
         <meta name="description" content="Configure the coffee machine" />
@@ -40,6 +41,7 @@ curl BREW http://localhost:3000/api/htcpcp
       </p>
 
       <CoffeeOrderForm />
+      <DrinkOrderQueue />
     </div>
   );
 };

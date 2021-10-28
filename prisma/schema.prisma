@@ -56,7 +56,7 @@ model DrinkOrder {
   id        String        @id @default(uuid())
   createdAt DateTime      @unique @default(now())
   name      String
-  command   DumbPiCommand @relation(fields: [commandId], references: [id])
+  command   DumbPiCommand @relation(fields: [commandId], references: [id], onDelete: Cascade)
   commandId String        @unique
 }
 

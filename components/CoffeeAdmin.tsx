@@ -3,6 +3,7 @@ import { useDrinkAdminQuery } from '../graphql/__generated__/operations.generate
 import { Divider, Table } from '@mantine/core';
 import { IngredientConfigRow } from './IngredientConfigRow';
 import { PumpConfigRow } from './PumpConfigRow';
+import { DrinkOrderQueue } from './DrinkOrderQueue';
 
 gql`
   query drinkAdmin {
@@ -103,6 +104,7 @@ export function CoffeeAdmin() {
         </tbody>
       </Table>
       <Divider my="md" label="Queued commands" labelPosition="center" />
+      <DrinkOrderQueue allowDelete />
     </div>
   );
 }

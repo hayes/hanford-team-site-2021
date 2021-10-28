@@ -48,6 +48,7 @@ type DrinkOrder {
   createdAt: DateTime!
   id: ID!
   name: String!
+  summary: String!
 }
 
 type DrinkPump {
@@ -85,6 +86,7 @@ type Mutation {
   createDrinkPump(input: DrinkPumpInput!): DrinkPump!
   createIngredient(input: DrinkIngredientInput!): DrinkIngredient!
   deleteIngredient(id: ID!): DrinkIngredient!
+  deleteOrder(id: ID!): DrinkOrder!
   deletePump(id: ID!): DrinkPump!
   updateDrinkPump(input: UpdateDrinkPumpInput!): DrinkPump!
   updateIngredient(input: UpdateDrinkIngredientInput!): DrinkIngredient!
@@ -95,7 +97,7 @@ type Query {
   drinkIngredients: [DrinkIngredient!]!
   drinkOrders: [DrinkOrder!]!
   drinkPumps: [DrinkPump!]!
-  dumbPiCommand: DumbPiCommand!
+  dumbPiCommand: DumbPiCommand
 }
 
 input UpdateDrinkIngredientInput {
