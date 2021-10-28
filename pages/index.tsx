@@ -22,6 +22,11 @@ const Home: NextPage = () => (
     <Header page="home" />
     <h1 className="text-2xl my-4">The ARPANET at Hanford Howl 2021</h1>
 
+    <p>
+      Consider this a brief guide to the history of the internet. May it help you along your journey
+      to a deeper understanding of the world we grew up in and our costume choices for this weekend.
+    </p>
+
     <h2 className="mt-16 mb-4 text-2xl">Kermit memes</h2>
     <div className="max-w-[450px] m-auto">
       <Image alt="Kermit memes" src={kermit} layout="responsive" />

@@ -4,6 +4,7 @@ import {
   useAddCommentMutation,
   useCommentThreadQuery,
 } from '../graphql/__generated__/operations.generated';
+import { useTimeSince } from '../lib/useTimeSince';
 
 gql`
   query commentThread($id: ID!) {
@@ -126,15 +127,25 @@ export default function CommentThread(props: { id: string }) {
 
       <ol className="my-8">
         {thread.comments.map((comment) => (
-          <li key={comment.id}>
-            <span className="bold">{comment.name}</span>
-            <span> said: </span>
-            <span className="italic text-lg">{comment.comment}</span>
-            <span> at </span>
-            <span>{new Date(comment.createdAt).toLocaleString()}</span>
-          </li>
+          <Comment key={comment.id} comment={comment} />
         ))}
       </ol>
     </div>
+  );
+}
+
+function Comment({ comment }: { comment: { createdAt: string; name: string; comment: string } }) {
+  const timeSince = useTimeSince(new Date(comment.createdAt));
+  return (
+    <li>
+      <div className="relative pt-8 my-8">
+        <span className="absolute top-0 left-0 italic block text-sm">
+          <span className="font-bold">{comment.name}</span> says:
+        </span>
+
+        <span className="block px-16 italic text-lg">{comment.comment}</span>
+        <span className="float-right text-xs">{timeSince}</span>
+      </div>
+    </li>
   );
 }
