@@ -143,7 +143,7 @@ function Comment({ comment }: { comment: { createdAt: string; name: string; comm
           <span className="font-bold">{comment.name}</span> says:
         </span>
 
-        <span className="block px-16 italic text-lg">{comment.comment}</span>
+        <span className="block px-16 italic text-lg font-sans">{comment.comment}</span>
         <span className="float-right text-xs">{timeSince}</span>
       </div>
     </li>

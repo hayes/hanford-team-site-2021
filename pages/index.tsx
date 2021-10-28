@@ -9,6 +9,7 @@ import saladFingers from '../public/salad-fingers.png';
 import teapot from '../public/teapot.jpg';
 import gore from '../public/gore.jpg';
 import doge from '../public/doge.jpg';
+import reddit from '../public/reddit.jpg';
 
 import { Header } from '../components/Header';
 
@@ -169,11 +170,24 @@ const Home: NextPage = () => (
     <h2 className="mt-16 mb-4 text-2xl">Snoo</h2>
     <p className="my-8 text-md">Description</p>
     <h2 className="mt-16 mb-4 text-2xl">Ice bucket challenge</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      The ice bucket challenge was a viral fundraiser for research into ALS, and sometimes other
+      causes. Typically those involved would dump a bucket of ice over their head, and then nominate
+      another person to do the same and donate to the cause. Since it's winter in the Pacific
+      Northwest, and hypothermia is a thing, I have altered the challenge. My 'costume' is a bit of
+      a two-fer- in the early 2000's, what can best be attributed to a a successful guerilla
+      marketing campaign by Smirnoff, dumb kids such as myself would "ice" one another by hiding a
+      Smirnoff ice and chanting "Ice!" Until the beverage was consumed. I have also chosen to
+      incorporate a fundraiser with my costume, so for every ultimate player who completes my
+      challenge this weekend, I'll be donating $2 to Causa, an Oregon immigrant's rights
+      organization.
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Homestarrunner</h2>
     <p className="my-8 text-md">Description</p>
     <h2 className="mt-16 mb-4 text-2xl">Fry</h2>
     <p className="my-8 text-md">Description</p>
+    <h2 className="mt-16 mb-4 text-2xl">Reddit</h2>
+    <Image alt="Reddit" src={reddit} layout="responsive" />
 
     <h2 className="text-2xl bold my-4">Say hi!</h2>
     <CommentThread id="example" />
