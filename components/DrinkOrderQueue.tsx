@@ -75,7 +75,7 @@ function OrderRow({
   return (
     <li className="my-2">
       <span className="font-bold">{order.name}</span>: {order.summary}{' '}
-      <span className="font-bold">{timeSince} ago</span>
+      <span className="font-bold">{timeSince}</span>
       {allowDelete && (
         <svg
           xmlns="http://www.w3.org/2000/svg"

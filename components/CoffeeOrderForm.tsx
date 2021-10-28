@@ -147,7 +147,7 @@ export function CoffeeOrderForm() {
 
   return (
     <>
-      <form className="shadow-md my-4">
+      <form className="shadow-md my-4 p-8">
         <Group grow align="end">
           {data.drinkIngredients
             .filter(({ pumps }) => pumps.some(({ enabled }) => enabled))

@@ -1,32 +1,42 @@
 import { useInterval } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
 
+function format(n: number, unit: string) {
+  const rounded = Math.floor(n);
+
+  if (rounded === 1) {
+    return `${rounded} ${unit} ago`;
+  }
+
+  return `${rounded} ${unit}s ago`;
+}
+
 function timeSince(date: Date) {
   var seconds = Math.floor((Date.now() - +date) / 1000);
 
   var interval = seconds / 31536000;
 
   if (interval > 1) {
-    return Math.floor(interval) + ' years';
+    return format(interval, 'year');
   }
   interval = seconds / 2592000;
   if (interval > 1) {
-    return Math.floor(interval) + ' months';
+    return format(interval, 'month');
   }
   interval = seconds / 86400;
   if (interval > 1) {
-    return Math.floor(interval) + ' days';
+    return format(interval, 'day');
   }
   interval = seconds / 3600;
   if (interval > 1) {
-    return Math.floor(interval) + ' hours';
+    return format(interval, 'hour');
   }
   interval = seconds / 60;
   if (interval > 1) {
-    return Math.floor(interval) + ' minutes';
+    return format(interval, 'minute');
   }
 
-  return Math.floor(seconds) + ' seconds';
+  return format(seconds, 'second');
 }
 
 export function useTimeSince(date: Date, interval = 1000) {
