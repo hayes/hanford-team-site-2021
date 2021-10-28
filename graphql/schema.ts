@@ -110,17 +110,14 @@ builder.mutationField('viewPage', (t) =>
       name: t.arg.string({ required: true }),
     },
     resolve: async (query, parent, args) => {
-      const viewCount = await db.viewCount.findUnique({ where: { name: args.name } });
-
-      if (!viewCount) {
-        return db.viewCount.create({ ...query, data: { name: args.name } });
-      }
-
-      return db.viewCount.update({
+      return db.viewCount.upsert({
         ...query,
         where: { name: args.name },
-        data: {
-          count: viewCount.count + 1,
+        create: { name: args.name },
+        update: {
+          count: {
+            increment: 1,
+          },
         },
       });
     },
