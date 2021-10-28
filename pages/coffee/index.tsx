@@ -4,6 +4,7 @@ import { CoffeeOrderForm } from '../../components/CoffeeOrderForm';
 import { CursorBlink } from '../../components/CursorBlink';
 import { DrinkOrderQueue } from '../../components/DrinkOrderQueue';
 import { TypingSimulation } from '../../components/TypingSimulation';
+import { ViewCount } from '../../components/ViewCount';
 
 const Home: NextPage = () => {
   const command = `
@@ -30,6 +31,8 @@ curl BREW http://localhost:3000/api/htcpcp
         </a>
         )
       </h1>
+
+      <ViewCount name="coffee" />
 
       <p>
         1998 was scary time. The internet was young and controlling coffee pots over the internet

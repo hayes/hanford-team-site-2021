@@ -9,6 +9,7 @@ import saladFingers from '../public/salad-fingers.png';
 import teapot from '../public/teapot.jpg';
 import gore from '../public/gore.jpg';
 import doge from '../public/doge.jpg';
+import { ViewCount } from '../components/ViewCount';
 
 const Home: NextPage = () => (
   <div className="mx-auto max-w-[700px] mt-8">
@@ -18,6 +19,9 @@ const Home: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <h1 className="text-4xl my-4">The ARPANET at Hanford Howl 2021</h1>
+
+    <ViewCount name="home-page" />
+
     <h2 className="my-4 text-2xl">Kermit memes</h2>
     <div className="max-w-[450px] m-auto">
       <Image alt="Kermit memes" src={kermit} layout="responsive" />

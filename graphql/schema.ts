@@ -94,4 +94,54 @@ builder.mutationField('addComment', (t) =>
   }),
 );
 
+builder.prismaObject('ViewCount', {
+  findUnique: (count) => ({ id: count.id }),
+  fields: (t) => ({
+    id: t.exposeID('id'),
+    count: t.exposeInt('count'),
+    name: t.exposeString('name'),
+  }),
+});
+
+builder.mutationField('viewPage', (t) =>
+  t.prismaField({
+    type: 'ViewCount',
+    args: {
+      name: t.arg.string({ required: true }),
+    },
+    resolve: async (query, parent, args) => {
+      const viewCount = await db.viewCount.findUnique({ where: { name: args.name } });
+
+      if (!viewCount) {
+        return db.viewCount.create({ ...query, data: { name: args.name } });
+      }
+
+      return db.viewCount.update({
+        ...query,
+        where: { name: args.name },
+        data: {
+          count: viewCount.count + 1,
+        },
+      });
+    },
+  }),
+);
+
+builder.queryField('viewCount', (t) =>
+  t.prismaField({
+    type: 'ViewCount',
+    args: {
+      name: t.arg.string({ required: true }),
+    },
+    resolve: async (query, parent, args) => {
+      return db.viewCount.upsert({
+        ...query,
+        where: { name: args.name },
+        update: {},
+        create: { name: args.name },
+      });
+    },
+  }),
+);
+
 export const schema = builder.toSchema({});

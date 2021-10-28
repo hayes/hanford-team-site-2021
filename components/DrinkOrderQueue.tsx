@@ -30,10 +30,12 @@ gql`
 `;
 
 export function DrinkOrderQueue({ allowDelete }: { allowDelete?: boolean }) {
-  const { data, error, loading, startPolling, refetch } = useDrinkOrderQueueQuery();
+  const { data, error, loading, startPolling, stopPolling, refetch } = useDrinkOrderQueueQuery();
 
   useEffect(() => {
     startPolling(5000);
+
+    return stopPolling;
   }, [startPolling]);
 
   if (error) {

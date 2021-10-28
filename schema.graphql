@@ -90,6 +90,7 @@ type Mutation {
   deletePump(id: ID!): DrinkPump!
   updateDrinkPump(input: UpdateDrinkPumpInput!): DrinkPump!
   updateIngredient(input: UpdateDrinkIngredientInput!): DrinkIngredient!
+  viewPage(name: String!): ViewCount!
 }
 
 type Query {
@@ -98,6 +99,7 @@ type Query {
   drinkOrders: [DrinkOrder!]!
   drinkPumps: [DrinkPump!]!
   dumbPiCommand: DumbPiCommand
+  viewCount(name: String!): ViewCount!
 }
 
 input UpdateDrinkIngredientInput {
@@ -115,4 +117,10 @@ input UpdateDrinkPumpInput {
   id: ID!
   ingredientId: ID
   pin: Int
+}
+
+type ViewCount {
+  count: Int!
+  id: ID!
+  name: String!
 }

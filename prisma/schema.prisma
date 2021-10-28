@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
@@ -66,4 +63,10 @@ model DrinkPump {
   enabled      Boolean          @default(true)
   ingredient   DrinkIngredient? @relation(fields: [ingredientId], references: [id])
   ingredientId String
+}
+
+model ViewCount {
+  id    String @id @default(uuid())
+  name  String @unique
+  count Int    @default(0)
 }
