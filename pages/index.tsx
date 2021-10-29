@@ -10,6 +10,15 @@ import teapot from '../public/teapot.jpg';
 import gore from '../public/gore.jpg';
 import doge from '../public/doge.jpg';
 import reddit from '../public/reddit.jpg';
+import fry from '../public/fry.jpg';
+import homestar from '../public/homestar.webp';
+import honeyBadger from '../public/honey-badger.png';
+import hotSingle from '../public/hot-single.gif';
+import iceBucket from '../public/ice-bucket.webp';
+import myImmortal from '../public/my-immortal.jpg';
+import onlyFans from '../public/only-fans.webp';
+import sign from '../public/sign.jpg';
+import wizardHat from '../public/wizard-hat.jpg';
 
 import { Header } from '../components/Header';
 
@@ -22,12 +31,10 @@ const Home: NextPage = () => (
     </Head>
     <Header page="home" />
     <h1 className="text-2xl my-4">The ARPANET at Hanford Howl 2021</h1>
-
     <p>
       Consider this a brief guide to the history of the internet. May it help you along your journey
       to a deeper understanding of the world we grew up in and our costume choices for this weekend.
     </p>
-
     <h2 className="mt-16 mb-4 text-2xl">Kermit memes</h2>
     <div className="max-w-[450px] m-auto">
       <Image alt="Kermit memes" src={kermit} layout="responsive" />
@@ -75,12 +82,12 @@ const Home: NextPage = () => (
       that it is fake. No one will be harmed in the recreating of this vine.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">My immortal</h2>
+    <Image alt="myImmortal" src={myImmortal} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Sexy cow hair</h2>
-
     <video
       className="margin-auto"
       loop
@@ -93,7 +100,6 @@ const Home: NextPage = () => (
       <source src="https://c.tenor.com/yLQAusw4bcEAAAPo/sexy-cow-hair.mp4" type="video/mp4" />
       <source src="https://c.tenor.com/yLQAusw4bcEAAAPs/sexy-cow-hair.webm" type="video/webm" />
     </video>
-
     <p className="my-8 text-md">
       There are normal cows, and then there are sexy cows. This is one of the latter. You'll know
       her when you see her.
@@ -116,9 +122,7 @@ const Home: NextPage = () => (
       because it's true and not because no one gave me anything better to put here.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Salad fingers</h2>
-
     <Image alt="Salad fingers memes" src={saladFingers} layout="responsive" />
-
     <p className="my-8 text-md">
       Hello. This is salad fingers. They like rusty spoons. They like to touch them. This phenomenal
       content from 2004 was named by the San Francisco Chronicle as one of the "Top 10" pop culteral
@@ -132,21 +136,25 @@ const Home: NextPage = () => (
       </a>{' '}
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Dude with a sign</h2>
+    <Image alt="sign" src={sign} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Hot single in your area</h2>
+    <Image alt="hotSingle" src={hotSingle} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">OnlyFans girl</h2>
+    <Image alt="onlyFans" src={onlyFans} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Honey badger</h2>
+    <Image alt="honeyBadger" src={honeyBadger} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
@@ -175,6 +183,7 @@ const Home: NextPage = () => (
       live Al Gore! Long live the internet!{' '}
     </p>
     <h2 className="mt-16 mb-4 text-2xl">I put on my robe and wizard hat.</h2>
+    <Image alt="wizardHat" src={wizardHat} layout="responsive" />;
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
@@ -189,11 +198,13 @@ const Home: NextPage = () => (
       crypto world. What can't this akita do?{' '}
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Snoo</h2>
+    <Image alt="Reddit" src={reddit} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Ice bucket challenge</h2>
+    <Image alt="iceBucket" src={iceBucket} layout="responsive" />
     <p className="my-8 text-md">
       The ice bucket challenge was a viral fundraiser for research into ALS, and sometimes other
       causes. Typically those involved would dump a bucket of ice over their head, and then nominate
@@ -207,18 +218,17 @@ const Home: NextPage = () => (
       organization.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Homestarrunner</h2>
+    <Image alt="homestar" src={homestar} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Fry</h2>
+    <Image alt="fry" src={fry} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
     </p>
-    <h2 className="mt-16 mb-4 text-2xl">Reddit</h2>
-    <Image alt="Reddit" src={reddit} layout="responsive" />
-
     <CommentThread id="example" />
   </div>
 );
