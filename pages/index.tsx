@@ -75,7 +75,10 @@ const Home: NextPage = () => (
       that it is fake. No one will be harmed in the recreating of this vine.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">My immortal</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Sexy cow hair</h2>
 
     <video
@@ -108,7 +111,10 @@ const Home: NextPage = () => (
       with the AOL logo printed on it!
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Jeeves</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Salad fingers</h2>
 
     <Image alt="Salad fingers memes" src={saladFingers} layout="responsive" />
@@ -126,13 +132,25 @@ const Home: NextPage = () => (
       </a>{' '}
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Dude with a sign</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Hot single in your area</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">OnlyFans girl</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Honey badger</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">RFC 2324</h2>
     <Image alt="RFC 2324" src={teapot} layout="responsive" />
     <p className="my-8 text-md">
@@ -157,7 +175,10 @@ const Home: NextPage = () => (
       live Al Gore! Long live the internet!{' '}
     </p>
     <h2 className="mt-16 mb-4 text-2xl">I put on my robe and wizard hat.</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Doge</h2>
     <div className="max-w-[300px] m-auto">
       <Image alt="Doge" src={doge} layout="responsive" />
@@ -168,7 +189,10 @@ const Home: NextPage = () => (
       crypto world. What can't this akita do?{' '}
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Snoo</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Ice bucket challenge</h2>
     <p className="my-8 text-md">
       The ice bucket challenge was a viral fundraiser for research into ALS, and sometimes other
@@ -183,9 +207,15 @@ const Home: NextPage = () => (
       organization.
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Homestarrunner</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Fry</h2>
-    <p className="my-8 text-md">Description</p>
+    <p className="my-8 text-md">
+      You remember this right? You'll know them when you see them, and I am definitely saying this
+      because it's true and not because no one gave me anything better to put here
+    </p>
     <h2 className="mt-16 mb-4 text-2xl">Reddit</h2>
     <Image alt="Reddit" src={reddit} layout="responsive" />
 
