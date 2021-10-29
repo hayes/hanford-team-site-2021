@@ -84,7 +84,7 @@ export default function CommentThread(props: { id: string }) {
   const thread = data!.commentThread;
 
   return (
-    <div className="my-16">
+    <div className="mb-16">
       <h2 className="text-2xl bold my-4">Post a picture or say Hi!</h2>
       <div className="my-4">
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">

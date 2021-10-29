@@ -409,7 +409,7 @@ const Home: NextPage = () => (
         <span className="c1" />
       </p>
     </div>
-    <div className="mt-8">
+    <div className="mt-16">
       <CommentThread id="example" />
     </div>
   </div>

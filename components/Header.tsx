@@ -8,7 +8,7 @@ export function Header({ page }: { page: string }) {
         <div className="max-w-[700px] m-auto py-4">
           <Link href="/" passHref>
             <span
-              className={`text-lg tracking-wider mx-4 border-black pb-1 px-1 hover:border-b cursor-pointer ${
+              className={`text-lg tracking-wider lg:mx-4 mx-1 border-black pb-1 px-1 hover:border-b cursor-pointer ${
                 page === 'home' ? 'border-b' : ''
               }`}
             >
@@ -17,11 +17,20 @@ export function Header({ page }: { page: string }) {
           </Link>
           <Link href="/coffee" passHref>
             <span
-              className={`text-lg tracking-wider mx-4 border-black pb-1 px-1 hover:border-b cursor-pointer ${
+              className={`text-lg tracking-wider lg:mx-4 mx-1 border-black pb-1 px-1 hover:border-b cursor-pointer ${
                 page === 'coffee' ? 'border-b' : ''
               }`}
             >
               Coffee
+            </span>
+          </Link>
+          <Link href="/comments" passHref>
+            <span
+              className={`text-lg tracking-wider lg:mx-4 mx-1 border-black pb-1 px-1 hover:border-b cursor-pointer ${
+                page === 'comments' ? 'border-b' : ''
+              }`}
+            >
+              Comments
             </span>
           </Link>
         </div>
