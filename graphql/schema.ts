@@ -2,6 +2,7 @@ import { db } from '../lib/db';
 import { builder } from './builder';
 import './dumpi';
 import './drink-machine';
+import './images';
 
 builder.mutationType({});
 builder.queryType({});
@@ -10,7 +11,13 @@ builder.prismaObject('CommentThread', {
   findUnique: (thread) => ({ id: thread.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
-    comments: t.relation('comments'),
+    comments: t.relation('comments', {
+      query: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+    }),
   }),
 });
 
@@ -23,6 +30,7 @@ builder.prismaObject('Comment', {
     thread: t.relation('thread'),
     name: t.exposeString('name'),
     comment: t.exposeString('comment'),
+    type: t.exposeString('type'),
   }),
 });
 
@@ -45,6 +53,7 @@ const CommentInput = builder.inputType('CommentInput', {
   fields: (t) => ({
     name: t.string({ required: true }),
     comment: t.string({ required: true }),
+    type: t.string({ required: false }),
   }),
 });
 
@@ -60,9 +69,10 @@ builder.mutationField('createCommentThread', (t) =>
         data: {
           comments: args.comments
             ? {
-                create: args.comments.map(({ comment, name }) => ({
+                create: args.comments.map(({ comment, name, type }) => ({
                   name,
                   comment,
+                  type: type ?? 'text',
                 })),
               }
             : undefined,
@@ -86,6 +96,7 @@ builder.mutationField('addComment', (t) =>
             name: args.comment.name,
             comment: args.comment.comment,
             threadId: String(args.threadId),
+            type: args.comment.type ?? 'text',
           },
         })
         .thread({

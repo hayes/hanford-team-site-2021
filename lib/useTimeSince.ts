@@ -43,7 +43,6 @@ export function useTimeSince(date: Date, interval = 1000) {
   const [formatted, setFormatted] = useState(timeSince(date));
 
   const { start, stop } = useInterval(() => {
-    console.log('update');
     setFormatted(timeSince(date));
   }, interval);
 

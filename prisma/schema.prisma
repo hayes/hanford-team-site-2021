@@ -27,6 +27,7 @@ model Comment {
   threadId  String
   name      String
   comment   String
+  type      String        @default("text")
 }
 
 model DumbPiCommand {

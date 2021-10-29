@@ -2,9 +2,11 @@ import { gql } from '@apollo/client';
 import { useState } from 'react';
 import {
   useAddCommentMutation,
+  useAddImageCommentMutation,
   useCommentThreadQuery,
 } from '../graphql/__generated__/operations.generated';
 import { useTimeSince } from '../lib/useTimeSince';
+import { ImageUpload } from './ImageUpload';
 
 gql`
   query commentThread($id: ID!) {
@@ -15,6 +17,7 @@ gql`
         createdAt
         name
         comment
+        type
       }
     }
   }
@@ -34,38 +37,43 @@ gql`
   }
 `;
 
-export default function CommentThread(props: { id: string }) {
-  const [name, setName] = useState('');
-  const [newComment, setNewComment] = useState('');
-  const [addComment, addCommentResult] = useAddCommentMutation({});
+gql`
+  mutation addImageComment($threadId: ID!, $name: String!, $url: String!) {
+    addComment(threadId: $threadId, comment: { name: $name, comment: $url, type: "image" }) {
+      id
+      comments {
+        id
+        name
+        comment
+        createdAt
+      }
+    }
+  }
+`;
 
-  const { data, loading, error } = useCommentThreadQuery({
+export default function CommentThread(props: { id: string }) {
+  const { data, loading, error, refetch } = useCommentThreadQuery({
     variables: {
       id: props.id,
     },
   });
 
+  const [name, setName] = useState('');
+  const [newComment, setNewComment] = useState('');
+  const [addComment] = useAddCommentMutation({
+    onCompleted: () => {
+      setNewComment('');
+      refetch();
+    },
+  });
+  const [addImageComment, addImageCommentResult] = useAddImageCommentMutation({
+    onCompleted: () => {
+      refetch();
+    },
+  });
+
   if (loading) {
-    return (
-      <h2>
-        <a href="#loading" aria-hidden="true" className="aal_anchor" id="loading">
-          <svg
-            aria-hidden="true"
-            className="aal_svg"
-            height="16"
-            version="1.1"
-            viewBox="0 0 16 16"
-            width="16"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"
-            ></path>
-          </svg>
-        </a>
-        Loading...
-      </h2>
-    );
+    return null;
   }
 
   if (error) {
@@ -76,54 +84,74 @@ export default function CommentThread(props: { id: string }) {
   const thread = data!.commentThread;
 
   return (
-    <div>
-      <form>
-        <div className="my-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-            Screen name
-          </label>
-          <div className="mt-1">
-            <input
-              onChange={(ev) => setName(ev.target.value)}
-              type="text"
-              name="name"
-              id="name"
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="Enter your oldest screen name"
-            />
-          </div>
+    <div className="my-16">
+      <h2 className="text-2xl bold my-4">Post a picture or say Hi!</h2>
+      <div className="my-4">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          Who are you?
+        </label>
+        <div className="mt-1">
+          <input
+            onChange={(ev) => setName(ev.target.value)}
+            value={name}
+            type="text"
+            name="name"
+            id="name"
+            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md "
+            placeholder="Enter your oldest screen name"
+          />
         </div>
-        <div className="my-4">
-          <label htmlFor="comment" className="block text-sm font-medium text-gray-700">
-            Comment
-          </label>
-          <div className="mt-1">
-            <textarea
-              onChange={(ev) => setNewComment(ev.target.value)}
-              name="comment"
-              id="comment"
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="Say something nice"
-            />
-          </div>
-        </div>
-        <button
-          type="button"
-          className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          disabled={!newComment || !name}
-          onClick={() => {
-            addComment({
+      </div>
+
+      {addImageCommentResult.loading ? (
+        'Adding comment...'
+      ) : (
+        <ImageUpload
+          disabled={!name}
+          onComplete={(url) => {
+            addImageComment({
               variables: {
                 threadId: props.id,
+                url,
                 name,
-                comment: newComment,
               },
             });
           }}
-        >
-          Add comment
-        </button>
-      </form>
+        />
+      )}
+
+      <div className="my-4">
+        <label htmlFor="comment" className="block text-sm font-medium text-gray-700">
+          Comment
+        </label>
+        <div className="mt-1">
+          <textarea
+            onChange={(ev) => setNewComment(ev.target.value)}
+            value={newComment}
+            name="comment"
+            id="comment"
+            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+            placeholder="Say something nice"
+          />
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-300 disabled:cursor-default"
+        disabled={!newComment || !name}
+        onClick={() => {
+          addComment({
+            variables: {
+              threadId: props.id,
+              name,
+              comment: newComment,
+            },
+          });
+        }}
+      >
+        Add comment
+      </button>
 
       <ol className="my-8">
         {thread.comments.map((comment) => (
@@ -134,7 +162,12 @@ export default function CommentThread(props: { id: string }) {
   );
 }
 
-function Comment({ comment }: { comment: { createdAt: string; name: string; comment: string } }) {
+function Comment({
+  comment,
+}: {
+  comment: { createdAt: string; name: string; comment: string; type: string };
+}) {
+  console.log(comment);
   const timeSince = useTimeSince(new Date(comment.createdAt));
   return (
     <li>
@@ -143,7 +176,16 @@ function Comment({ comment }: { comment: { createdAt: string; name: string; comm
           <span className="font-bold">{comment.name}</span> says:
         </span>
 
-        <span className="block px-16 italic text-lg font-sans">{comment.comment}</span>
+        {comment.type === 'image' ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            alt="image-comment"
+            className="m-auto max-w-full max-h-[350px]"
+            src={comment.comment}
+          />
+        ) : (
+          <span className="block px-16 italic text-lg font-sans">{comment.comment}</span>
+        )}
         <span className="float-right text-xs">{timeSince}</span>
       </div>
     </li>

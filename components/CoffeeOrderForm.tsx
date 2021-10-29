@@ -83,7 +83,6 @@ export function CoffeeOrderForm() {
 
   function onSettled(data: unknown, error: unknown) {
     const { status, statusText, data: responseText } = data as AxiosResponse<string>;
-    console.log(data, error);
 
     const response = [
       '',

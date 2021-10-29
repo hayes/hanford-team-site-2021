@@ -189,7 +189,6 @@ const Home: NextPage = () => (
     <h2 className="mt-16 mb-4 text-2xl">Reddit</h2>
     <Image alt="Reddit" src={reddit} layout="responsive" />
 
-    <h2 className="text-2xl bold my-4">Say hi!</h2>
     <CommentThread id="example" />
   </div>
 );

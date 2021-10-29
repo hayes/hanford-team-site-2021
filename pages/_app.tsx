@@ -1,5 +1,8 @@
 import '../styles/index.css';
 import 'tailwindcss/tailwind.css';
+import '@uppy/core/dist/style.css';
+import '@uppy/progress-bar/dist/style.css';
+
 import type { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';

@@ -4,12 +4,14 @@ type Comment {
   id: ID!
   name: String!
   thread: CommentThread!
+  type: String!
   updatedAt: DateTime!
 }
 
 input CommentInput {
   comment: String!
   name: String!
+  type: String
 }
 
 type CommentThread {
@@ -85,6 +87,7 @@ type Mutation {
   createCommentThread(comments: [CommentInput!]): CommentThread!
   createDrinkPump(input: DrinkPumpInput!): DrinkPump!
   createIngredient(input: DrinkIngredientInput!): DrinkIngredient!
+  createUploadUrl(extension: String): UploadURL!
   deleteIngredient(id: ID!): DrinkIngredient!
   deleteOrder(id: ID!): DrinkOrder!
   deletePump(id: ID!): DrinkPump!
@@ -117,6 +120,11 @@ input UpdateDrinkPumpInput {
   id: ID!
   ingredientId: ID
   pin: Int
+}
+
+type UploadURL {
+  key: String!
+  uploadUrl: String!
 }
 
 type ViewCount {
