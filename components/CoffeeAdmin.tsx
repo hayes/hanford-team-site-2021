@@ -107,7 +107,7 @@ export function CoffeeAdmin() {
       <Divider my="md" label="Queued commands" labelPosition="center" />
       <DrinkOrderQueue allowDelete />
       <Divider my="md" label="Test command builder" labelPosition="center" />
-      <TestCommandBuilder />
+      <TestCommandBuilder pumps={data!.drinkPumps} />
     </div>
   );
 }

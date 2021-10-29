@@ -280,3 +280,25 @@ builder.queryField('drinkOrders', (t) =>
       }),
   }),
 );
+
+builder.mutationField('addTestOrder', (t) =>
+  t.prismaField({
+    type: 'DrinkOrder',
+    args: {
+      command: t.arg.string({ required: true }),
+    },
+    resolve: (query, root, args) =>
+      db.drinkOrder.create({
+        ...query,
+        data: {
+          name: 'Test',
+          command: {
+            create: {
+              type: 'test',
+              command: args.command,
+            },
+          },
+        },
+      }),
+  }),
+);

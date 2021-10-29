@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { useState } from 'react';
 import { useUpdatePumpMutation } from '../graphql/__generated__/operations.generated';
 
-interface Pump {
+export interface Pump {
   id: string;
   pin: number;
   ingredient?: {

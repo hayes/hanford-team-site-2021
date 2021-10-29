@@ -84,6 +84,7 @@ type DumbPinState {
 
 type Mutation {
   addComment(comment: CommentInput!, threadId: ID!): CommentThread
+  addTestOrder(command: String!): DrinkOrder!
   createCommentThread(comments: [CommentInput!]): CommentThread!
   createDrinkPump(input: DrinkPumpInput!): DrinkPump!
   createIngredient(input: DrinkIngredientInput!): DrinkIngredient!

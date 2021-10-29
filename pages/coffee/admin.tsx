@@ -5,7 +5,7 @@ import { ViewCount } from '../../components/ViewCount';
 
 const Home: NextPage = () => {
   return (
-    <div className="mx-auto w-[750px] mt-8">
+    <div className="mx-auto w-[750px] my-16">
       <Head>
         <title>Coffee admin control</title>
         <meta name="description" content="Configure the coffee machine" />
