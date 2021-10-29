@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { NextPage } from 'next';
+import Link from 'next/link';
 import Head from 'next/head';
 import Image from 'next/image';
 import CommentThread from '../components/CommentThread';
@@ -231,7 +232,16 @@ const Home: NextPage = () => (
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
     </p>
-    <CommentThread id="example" />
+    <h2 className="mt-16 mb-4 text-2xl">MAILER-DAEMON</h2>
+    See{' '}
+    <Link href="/email">
+      <span className={`border-black pb-1 px-1 hover:border-b cursor-pointer`}>
+        https://hanford.page/email
+      </span>
+    </Link>
+    <div className="mt-8">
+      <CommentThread id="example" />
+    </div>
   </div>
 );
 
