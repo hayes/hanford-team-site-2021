@@ -56,7 +56,7 @@ export default (async (req, res) => {
       value,
       pumps: loadedIngredients.find((ingredient) => ingredient.name === name)!.pumps,
     }))
-    .sort((a, b) => a.value - b.value);
+    .sort((a, b) => b.value - a.value);
 
   while (remaining.length > 0) {
     const chunk = remaining.splice(0, MAX_PUMPS);
