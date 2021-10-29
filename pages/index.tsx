@@ -19,6 +19,7 @@ import myImmortal from '../public/my-immortal.jpg';
 import onlyFans from '../public/only-fans.webp';
 import sign from '../public/sign.jpg';
 import wizardHat from '../public/wizard-hat.jpg';
+import jeevs from '../public/jeevs.webp';
 
 import { Header } from '../components/Header';
 
@@ -117,6 +118,7 @@ const Home: NextPage = () => (
       with the AOL logo printed on it!
     </p>
     <h2 className="mt-16 mb-4 text-2xl">Jeeves</h2>
+    <Image alt="jeevs" src={jeevs} layout="responsive" />
     <p className="my-8 text-md">
       You remember this right? You'll know them when you see them, and I'm definitely saying this
       because it's true and not because no one gave me anything better to put here.
