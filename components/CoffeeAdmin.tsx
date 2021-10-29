@@ -4,6 +4,7 @@ import { Divider, Table } from '@mantine/core';
 import { IngredientConfigRow } from './IngredientConfigRow';
 import { PumpConfigRow } from './PumpConfigRow';
 import { DrinkOrderQueue } from './DrinkOrderQueue';
+import { TestCommandBuilder } from './TestCommndBuilder';
 
 gql`
   query drinkAdmin {
@@ -105,6 +106,8 @@ export function CoffeeAdmin() {
       </Table>
       <Divider my="md" label="Queued commands" labelPosition="center" />
       <DrinkOrderQueue allowDelete />
+      <Divider my="md" label="Test command builder" labelPosition="center" />
+      <TestCommandBuilder />
     </div>
   );
 }

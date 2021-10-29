@@ -63,7 +63,7 @@ model DrinkPump {
   pin          Int
   enabled      Boolean          @default(true)
   ingredient   DrinkIngredient? @relation(fields: [ingredientId], references: [id])
-  ingredientId String
+  ingredientId String?
 }
 
 model ViewCount {
