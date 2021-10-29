@@ -6,10 +6,10 @@ import { useUpdatePumpMutation } from '../graphql/__generated__/operations.gener
 interface Pump {
   id: string;
   pin: number;
-  ingredient: {
+  ingredient?: {
     id: string;
     name: string;
-  };
+  } | null;
   enabled: boolean;
 }
 
@@ -39,7 +39,7 @@ export const PumpConfigRow = ({
   }[];
   refresh: () => void;
 }) => {
-  const [ingredientId, setIngredientId] = useState(pump.ingredient.id);
+  const [ingredientId, setIngredientId] = useState(pump.ingredient?.id ?? undefined);
   const [enabled, setEnabled] = useState(pump.enabled);
 
   const [updatePump] = useUpdatePumpMutation({
@@ -57,6 +57,7 @@ export const PumpConfigRow = ({
             value: ingredient.id,
           }))}
           onChange={(val) => setIngredientId(val)}
+          onEmptied={() => setIngredientId(undefined)}
         />
       </td>
       <td>

@@ -56,7 +56,7 @@ type DrinkOrder {
 type DrinkPump {
   enabled: Boolean!
   id: ID!
-  ingredient: DrinkIngredient!
+  ingredient: DrinkIngredient
   pin: Int!
 }
 

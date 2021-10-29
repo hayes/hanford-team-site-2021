@@ -10,7 +10,11 @@ builder.prismaObject('DrinkIngredient', {
       type: 'DateTime',
     }),
     name: t.exposeString('name'),
-    pumps: t.relation('pumps'),
+    pumps: t.relation('pumps', {
+      query: {
+        where: { enabled: true },
+      },
+    }),
     max: t.exposeInt('max'),
     increment: t.exposeInt('increment'),
     multiplier: t.exposeInt('multiplier'),
@@ -23,7 +27,9 @@ builder.prismaObject('DrinkPump', {
   findUnique: (pump) => ({ id: pump.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
-    ingredient: t.relation('ingredient'),
+    ingredient: t.relation('ingredient', {
+      nullable: true,
+    }),
     pin: t.exposeInt('pin'),
     enabled: t.exposeBoolean('enabled'),
   }),
