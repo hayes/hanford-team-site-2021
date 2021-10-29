@@ -1,4 +1,5 @@
 import '../styles/index.css';
+import '../styles/email.css';
 import 'tailwindcss/tailwind.css';
 import '@uppy/core/dist/style.css';
 import '@uppy/progress-bar/dist/style.css';

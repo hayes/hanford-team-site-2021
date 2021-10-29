@@ -34,7 +34,7 @@ export function Header({ page }: { page: string }) {
             </span>
           </Link>
         </div>
-        <div className="absolute top-0 right-8 h-full flex items-center">
+        <div className="absolute -top-2 right-4 h-full flex items-center text-xs">
           <ViewCount name={page} />
         </div>
       </nav>
